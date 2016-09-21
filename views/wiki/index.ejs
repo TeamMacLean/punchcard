@@ -1,0 +1,28 @@
+<% include ../head.ejs %>
+
+<div class="container">
+    <h2 class="center">Wiki</h2>
+
+    <table class="table">
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>Firstname</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <tbody>
+        <% docs.map(function(doc){ %>
+        <tr>
+            <td><a href="/wiki/<%- doc.id %>"><%- doc.title %></a></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+
+
+    <a href="/wiki/new" class="button success pull-right">New</a>
+</div>
+
+<% include ../foot.ejs %>
+
+
+

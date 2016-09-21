@@ -1,0 +1,34 @@
+<% include ./head-no-nav.ejs %>
+
+<div class="container">
+    <div class="narrow-center">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="/logo.svg">
+                <a href="/">Punchcard.</a>
+            </div>
+            <div class="login-body">
+                <p class="center">Sign in to continue</p>
+
+                <form method="post" action="/signin">
+                    <div class="form-group has-feedback">
+                        <input class="wide has-icon" type="text" id="username" name="username" placeholder="Username"
+                               required
+                               autofocus>
+                        <i class="icon icon-user input-icon"></i>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input class="wide has-icon" type="password" id="password" name="password"
+                               placeholder="Password" required>
+                        <i class="icon icon-lock input-icon"></i>
+                    </div>
+                    <button class="wide primary" type="submit">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./foot %>

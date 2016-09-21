@@ -1,0 +1,53 @@
+const Auth = {};
+const passport = require('passport');
+const gravatar = require('gravatar');
+const renderError = require('../lib/renderError');
+const config = require('../config.json');
+const LOG = require('../lib/log');
+
+Auth.isUser = function (username) {
+    return config.users.indexOf(username) > -1;
+};
+
+Auth.index = (req, res) => {
+    res.render('index');
+};
+
+Auth.signIn = (req, res) => {
+    res.render('signin');
+};
+
+Auth.signOut = (req, res) => {
+    req.logout();
+    res.redirect('/');
+};
+
+Auth.signInPost = (req, res, next) => {
+
+    passport.authenticate('ldapauth', (err, user, info) => {
+        if (err) {
+            LOG.error(err);
+            return next(err);
+        }
+        if (!user) {
+            var message = 'No such user';
+            if (info && info.message) {
+                message += `, ${info.message}`;
+            }
+            return renderError(message, res);
+        }
+
+        req.logIn(user, err => {
+            if (err) {
+                console.log('could not sign them in');
+                return next(err);
+            }
+            req.user.iconURL = gravatar.url(req.user.mail);
+            // console.log(req.user);
+            return res.redirect('/');
+        });
+    })(req, res, next);
+};
+
+
+module.exports = Auth;

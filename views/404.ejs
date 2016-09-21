@@ -1,0 +1,16 @@
+<% include head %>
+
+<div class="error-container">
+    <h2 class="center">404</h2>
+</div>
+
+<% if(typeof error != 'undefined'){ %>
+<p class="center"><%- error %></p>
+<a href="mailto:bioinformatics@tsl.ac.uk?subject=I found a bug with the Punchcard site&body=<%- encodeURI(error) %>"
+   class="button center">Report
+    this
+    bug</a>
+<% } else { %>
+<p class="center">Page not found</p>
+<% } %>
+<% include foot %>

@@ -1,0 +1,62 @@
+<% include ../head.ejs %>
+
+<div class="container">
+    <form action="/wiki/save" method="post">
+        <% if(typeof doc != 'undefined' ){ %>
+        <input type="hidden" name="id" value="<%- doc.id %>" required>
+        <% } else {
+            doc = {};
+        } %>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input name="title" type="text" placeholder="Title" value="<%- doc.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <div name="content" class="epiceditor" id="epiceditor"></div>
+        </div>
+        <input type="hidden" name="content" id="content" value="<%- doc.body %>">
+        <div class="form-group pull-right">
+            <input type="submit" class="success" value="Save">
+        </div>
+    </form>
+</div>
+
+<script src="/components/EpicEditor/epiceditor/js/epiceditor.min.js"></script>
+<script>
+    var opts = {
+        container: 'epiceditor',
+        textarea: 'content',
+        basePath: '/components/EpicEditor/epiceditor',
+        clientSideStorage: false,
+        localStorageName: 'epiceditor',
+        useNativeFullscreen: true,
+        parser: marked,
+        theme: {
+            base: '/themes/base/epiceditor.css',
+            preview: '/themes/preview/preview-dark.css',
+            editor: '/themes/editor/epic-dark.css'
+        },
+        button: {
+            preview: true,
+            fullscreen: true,
+            bar: "auto"
+        },
+        focusOnLoad: false,
+        shortcut: {
+            modifier: 18,
+            fullscreen: 70,
+            preview: 80
+        },
+        string: {
+            togglePreview: 'Toggle Preview Mode',
+            toggleEdit: 'Toggle Edit Mode',
+            toggleFullscreen: 'Enter Fullscreen'
+        },
+        autogrow: true
+    }
+    var editor = new EpicEditor(opts);
+    editor.load();
+</script>
+
+<% include ../foot.ejs %>

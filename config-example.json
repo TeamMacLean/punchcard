@@ -1,0 +1,15 @@
+{
+  "db": "punchcard",
+  "port": "3000",
+  "ldap": {
+    "url": "ldap://localhost:389",
+    "bindDn": "root",
+    "bindCredentials": "secret",
+    "searchBase": "ou=example.org",
+    "searchFilter": "(sAMAccountName={{username}})"
+  },
+  "secret": "CHANGE_ME",
+  "users": [
+    "pagem"
+  ]
+}

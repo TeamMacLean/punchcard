@@ -1,0 +1,42 @@
+<% include ./head-no-nav.ejs %>
+
+<nav>
+    <div class="container">
+
+        <div id="menu-button" class="mobile-button">
+            <div id="nav-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="brand">
+            <a href="/">
+                <img src="/logo.svg">
+                <div class="name"><h1>Punchcard.</h1></div>
+            </a>
+        </div>
+
+        <div class="links">
+
+            <div>
+                <a href="/wiki"><i class="icon-notebook"> </i>Wiki</a>
+                <a href="/ticket"><i class="icon-tag"> </i>Tickets</a>
+                <a href="/todo"><i class="icon-list"> </i>To Do</a>
+            </div>
+
+        </div>
+
+        <div class="user">
+            <% if(locals.signedInUser){ %>
+            <div class="icon">
+                <img src="<%- locals.signedInUser.iconURL %>">
+            </div>
+            <% } else { %>
+            <a href="/signin" class="button primary active-only">Log in</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
