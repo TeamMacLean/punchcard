@@ -33,11 +33,13 @@ Wiki.save = (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.content;
+    var username = req.signedInUser.username;
 
     if (id) {
         Document.get(id).then((doc)=> {
             doc.title = title;
             doc.body = body;
+            doc.username = username;
             doc.save().then((doc)=> {
                 return res.redirect(`/wiki/${doc.id}`)
             })

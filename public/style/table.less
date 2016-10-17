@@ -1,10 +1,20 @@
 table {
   width: 100%;
-
   margin-bottom: 20px;
 
   &.cart {
     margin-bottom: 20px;
+  }
+
+  &.one-col {
+    th,
+    td {
+      padding: 0;
+    }
+    a {
+      display: block;
+      padding: 8px 0;
+    }
   }
 
   th,
@@ -67,5 +77,23 @@ table {
       width: auto;
     }
 
+    &.one-col {
+      tr,td{
+        padding:0;
+      }
+      a {
+        padding: 32px 0;
+        font-size: 1.5rem;
+        &:hover{
+          background-color: @grey-light;
+
+        }
+      }
+      tr:hover{
+        //border-color: @grey-light;
+      }
+    }
+
+    //}
   }
 }

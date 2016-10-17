@@ -3,7 +3,7 @@
 <div class="container">
     <h2 class="center">Wiki</h2>
 
-    <table class="table">
+    <table class="table one-col">
         <!--<thead>-->
         <!--<tr>-->
         <!--<th>Firstname</th>-->
@@ -11,9 +11,11 @@
         <!--</thead>-->
         <tbody>
         <% docs.map(function(doc){ %>
-        <tr>
-            <td class=""><a href="/wiki/<%- doc.id %>"><%- doc.title %></a></td>
-        </tr>
+        <a href="/wiki/<%- doc.id %>">
+            <tr>
+                <td class=""><a href="/wiki/<%- doc.id %>"><%- doc.title %></a></td>
+            </tr>
+        </a>
         <% }); %>
         </tbody>
     </table>
