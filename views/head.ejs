@@ -23,8 +23,11 @@
 
             <div>
                 <a href="/wiki"><i class="icon-notebook"> </i>Wiki</a>
-                <a href="/ticket"><i class="icon-tag"> </i>Tickets</a>
-                <a href="/todo"><i class="icon-list"> </i>To Do</a>
+                <% if(locals.signedInUser){ %>
+                <a class="mobile-only" href="/signout"><i class="icon-logout"> </i>Sign out</a>
+                <% } %>
+                <!--<a href="/ticket"><i class="icon-tag"> </i>Tickets</a>-->
+                <!--<a href="/todo"><i class="icon-list"> </i>To Do</a>-->
             </div>
 
         </div>
@@ -34,9 +37,20 @@
             <div class="icon">
                 <img src="<%- locals.signedInUser.iconURL %>">
             </div>
+            <div class="user-menu hidden">
+                <ul>
+                    <!--<li>-->
+                    <!--<a href="/orders">My Orders</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a href="/signout"><i class="icon-logout"> </i>Sign out</a>
+                    </li>
+                </ul>
+            </div>
             <% } else { %>
             <a href="/signin" class="button primary active-only">Log in</a>
             <% } %>
         </div>
     </div>
 </nav>
+

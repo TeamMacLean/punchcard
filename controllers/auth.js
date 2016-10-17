@@ -44,7 +44,14 @@ Auth.signInPost = (req, res, next) => {
             }
             req.user.iconURL = gravatar.url(req.user.mail);
             // console.log(req.user);
-            return res.redirect('/');
+
+            if (req.session.returnTo) {
+                return res.redirect(req.session.returnTo);
+            } else {
+                return res.redirect('/');
+            }
+
+
         });
     })(req, res, next);
 };

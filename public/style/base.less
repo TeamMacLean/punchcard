@@ -20,10 +20,22 @@
 html, body {
   //height: 100%;
   background-color: @background;
+
+  font-family: Raleway, Verdana, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  width: 100%;
+  //height: 100%;
+  margin: 0;
+  padding: 0;
+  color: #414A52;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
 html {
-  font-size: 16px;
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: transparent;
   position: relative;
@@ -31,15 +43,8 @@ html {
 }
 
 body {
-  font-family: @base-font;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: @font-color;
-  -webkit-font-smoothing: antialiased !important;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   padding-top: @nav-height + 20px;
   margin-bottom: @foot-height + 20px;
-  //min-height: 100%;
 }
 
 .top-pad {
@@ -64,6 +69,10 @@ img {
   float: right;
 }
 
+.pull-left {
+  float: left;
+}
+
 a {
   text-decoration: none;
   color: @link-color;
@@ -71,10 +80,6 @@ a {
 
 .wide {
   width: 100%;
-}
-
-.center {
-  text-align: center;
 }
 
 .border {
