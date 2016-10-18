@@ -6,9 +6,9 @@ const Document = require('../models/wiki/document');
 Wiki.index = (req, res)=> {
     Document.run().then((docs)=> {
 
-        const docs = docs.sort(function(a, b){
-            if(a.title < b.title) return -1;
-            if(a.title > b.title) return 1;
+        docs = docs.sort(function (a, b) {
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
             return 0;
         });
 
