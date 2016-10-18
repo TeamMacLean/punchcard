@@ -33,7 +33,7 @@ Wiki.save = (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.content;
-    var username = req.signedInUser.username;
+    var username = req.user.username;
 
     if (id) {
         Document.get(id).then((doc)=> {
