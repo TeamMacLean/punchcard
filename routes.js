@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Wiki = require('./controllers/wiki');
+var Knowledge = require('./controllers/knowledge');
 var Tickets = require('./controllers/tickets');
 var Todos = require('./controllers/todos');
 var Auth = require('./controllers/auth');
@@ -10,22 +10,22 @@ router.route('/')
         return res.render('index');
     });
 
-//WIKI
-router.route('/wiki')
+//knowledge
+router.route('/knowledge')
     .all(isAuthenticated)
-    .get(Wiki.index);
-router.route('/wiki/:id/edit')
+    .get(Knowledge.index);
+router.route('/knowledge/:id/edit')
     .all(isAuthenticated)
-    .get(Wiki.edit);
-router.route('/wiki/new')
+    .get(Knowledge.edit);
+router.route('/knowledge/new')
     .all(isAuthenticated)
-    .get(Wiki.new);
-router.route('/wiki/save')
+    .get(Knowledge.new);
+router.route('/knowledge/save')
     .all(isAuthenticated)
-    .post(Wiki.save);
-router.route('/wiki/:id')
+    .post(Knowledge.save);
+router.route(['/knowledge/:id', '/wiki/:id']) //support old route for now.
     .all(isAuthenticated)
-    .get(Wiki.show);
+    .get(Knowledge.show);
 
 //TO DO
 router.route('/todo')

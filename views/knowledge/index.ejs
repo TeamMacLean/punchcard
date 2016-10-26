@@ -1,7 +1,7 @@
 <% include ../head.ejs %>
 
 <div class="container">
-    <h2 class="center">Wiki</h2>
+    <h2 class="center">Knowledge</h2>
 
     <table class="table one-col">
         <!--<thead>-->
@@ -11,9 +11,9 @@
         <!--</thead>-->
         <tbody>
         <% docs.map(function(doc){ %>
-        <a href="/wiki/<%- doc.id %>">
+        <a href="/knowledge/<%- doc.id %>">
             <tr>
-                <td class=""><a href="/wiki/<%- doc.id %>"><%- doc.title %></a></td>
+                <td class=""><a href="/knowledge/<%- doc.id %>"><%- doc.title %></a></td>
             </tr>
         </a>
         <% }); %>
@@ -21,7 +21,7 @@
     </table>
 
 
-    <a href="/wiki/new" class="button success pull-right">New</a>
+    <a href="/knowledge/new" class="button success pull-right">New</a>
 </div>
 
 <% include ../foot.ejs %>

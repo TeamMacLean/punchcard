@@ -1,7 +1,7 @@
 <% include ../head.ejs %>
 
 <div class="container">
-    <form action="/wiki/save" method="post">
+    <form action="/knowledge/save" method="post">
         <% if(typeof doc != 'undefined' ){ %>
         <input type="hidden" name="id" value="<%- doc.id %>" required>
         <% } else {
@@ -17,7 +17,7 @@
         </div>
         <input type="hidden" name="content" id="content" value="<%- doc.body %>">
         <div class="form-group pull-right">
-            <a href="/wiki/<%- doc.id %>" class="button primary">Back</a>
+            <a href="/knowledge/<%- doc.id %>" class="button primary">Back</a>
             <input type="submit" class="success" value="Save">
         </div>
     </form>

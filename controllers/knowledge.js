@@ -1,9 +1,9 @@
-var Wiki = {};
+var Knowledge = {};
 
 const renderError = require('../lib/renderError');
-const Document = require('../models/wiki/document');
+const Document = require('../models/knowledge/document');
 
-Wiki.index = (req, res)=> {
+Knowledge.index = (req, res)=> {
     Document.run().then((docs)=> {
 
         docs = docs.sort(function (a, b) {
@@ -12,30 +12,30 @@ Wiki.index = (req, res)=> {
             return 0;
         });
 
-        return res.render('wiki/index', {docs});
+        return res.render('knowledge/index', {docs});
     }).catch(err => renderError(err, res));
 };
 
-Wiki.show = (req, res)=> {
+Knowledge.show = (req, res)=> {
     var id = req.params.id;
     Document.get(id).then((doc)=> {
         // console.log(doc);
-        return res.render('wiki/show', {doc});
+        return res.render('knowledge/show', {doc});
     }).catch(err => renderError(err, res));
 };
 
-Wiki.new = (req, res) => {
-    return res.render('wiki/edit');
+Knowledge.new = (req, res) => {
+    return res.render('knowledge/edit');
 };
 
-Wiki.edit = (req, res) => {
+Knowledge.edit = (req, res) => {
     var id = req.params.id;
     Document.get(id).then((doc)=> {
-        return res.render('wiki/edit', {id, doc});
+        return res.render('knowledge/edit', {id, doc});
     });
 };
 
-Wiki.save = (req, res) => {
+Knowledge.save = (req, res) => {
 
     var id = req.body.id;
     var title = req.body.title;
@@ -48,14 +48,14 @@ Wiki.save = (req, res) => {
             doc.body = body;
             doc.username = username;
             doc.save().then((doc)=> {
-                return res.redirect(`/wiki/${doc.id}`)
+                return res.redirect(`/knowledge/${doc.id}`)
             })
                 .catch(err => renderError(err, res));
         }).catch(err => renderError(err, res));
     } else {
         new Document({title, body}).save()
             .then((doc)=> {
-                return res.redirect(`/wiki/${doc.id}`)
+                return res.redirect(`/knowledge/${doc.id}`)
             })
             .catch(err => renderError(err, res));
     }
@@ -64,4 +64,4 @@ Wiki.save = (req, res) => {
 };
 
 
-module.exports = Wiki;
+module.exports = Knowledge;
