@@ -3,17 +3,21 @@
 <div class="container">
     <h2 class="center">Knowledge</h2>
 
-    <table class="table one-col">
-        <!--<thead>-->
-        <!--<tr>-->
-        <!--<th>Firstname</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Last Edited</th>
+        </tr>
+        </thead>
         <tbody>
         <% docs.map(function(doc){ %>
         <a href="/knowledge/<%- doc.id %>">
             <tr>
                 <td class=""><a href="/knowledge/<%- doc.id %>"><%- doc.title %></a></td>
+                <td>
+                    <p><%- doc.updatedAt ? doc.updatedAt : doc.createdAt %></p>
+                </td>
             </tr>
         </a>
         <% }); %>

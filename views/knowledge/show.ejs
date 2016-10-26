@@ -9,10 +9,10 @@
         <a href="/knowledge/<%- doc.id %>/edit" class="button success">Edit</a>
         <!--<a href="/knowledge/<%- doc.id %>/delete" class="button danger areyousure">Delete</a>-->
     </div>
-    <p>Created <%- doc.createdAt %></p>
     <% if(doc.createdAt){ %>
     <p>Last updated <%- doc.updatedAt %></p>
     <% } %>
+    <p>Created <%- doc.createdAt %></p>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>

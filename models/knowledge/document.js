@@ -13,7 +13,7 @@ const Document = thinky.createModel('Document', {
 
 });
 
-Document.on("saved", function () {
+Document.on("saving", function () {
     this.updatedAt = new Date();
 });
 
