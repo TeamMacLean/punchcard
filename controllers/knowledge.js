@@ -1,4 +1,5 @@
 var Knowledge = {};
+var moment = require('moment');
 
 const renderError = require('../lib/renderError');
 const Document = require('../models/knowledge/document');
@@ -12,7 +13,7 @@ Knowledge.index = (req, res)=> {
             return 0;
         });
 
-        return res.render('knowledge/index', {docs});
+        return res.render('knowledge/index', {docs, moment});
     }).catch(err => renderError(err, res));
 };
 
