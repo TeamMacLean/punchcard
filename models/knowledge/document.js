@@ -1,6 +1,6 @@
 const thinky = require('../../lib/thinky');
 const type = thinky.type;
-const r = type.r;
+const r = thinky.r;
 
 
 const Document = thinky.createModel('Document', {
