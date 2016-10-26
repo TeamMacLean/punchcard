@@ -13,7 +13,9 @@ const Document = thinky.createModel('Document', {
 
 });
 
-Document.on('saving', function (doc) {
-    doc.updatedAt = new Date();
+Document.pre('save', function (next) {
+    this.updatedAt = new Date();
+    next();
 });
+
 module.exports = Document;
