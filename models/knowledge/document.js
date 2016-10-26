@@ -9,7 +9,7 @@ const Document = thinky.createModel('Document', {
     body: type.string().required().default('# New Document'),
     username: type.string().required().default('Unknown'),
     createdAt: type.date().default(r.now()),
-    updatedAt: type.date().default(null)
+    updatedAt: type.date().default(undefined)
 
 });
 
