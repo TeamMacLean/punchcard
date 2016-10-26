@@ -21,7 +21,7 @@ Knowledge.show = (req, res)=> {
     var id = req.params.id;
     Document.get(id).then((doc)=> {
         // console.log(doc);
-        return res.render('knowledge/show', {doc});
+        return res.render('knowledge/show', {doc, moment});
     }).catch(err => renderError(err, res));
 };
 

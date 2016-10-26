@@ -10,9 +10,9 @@
         <!--<a href="/knowledge/<%- doc.id %>/delete" class="button danger areyousure">Delete</a>-->
     </div>
     <% if(doc.createdAt){ %>
-    <p>Last updated <%- doc.updatedAt %></p>
+    <p>Last updated <%- moment(doc.updatedAt).calendar() %></p>
     <% } %>
-    <p>Created <%- doc.createdAt %></p>
+    <p>Created <%- moment(doc.createdAt).calendar() %></p>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>
