@@ -1,12 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var Knowledge = require('./controllers/knowledge');
-var Tickets = require('./controllers/tickets');
-var Todos = require('./controllers/todos');
-var Auth = require('./controllers/auth');
+const express = require('express');
+const router = express.Router();
+const Knowledge = require('./controllers/knowledge');
+const Tickets = require('./controllers/tickets');
+const Todos = require('./controllers/todos');
+const Auth = require('./controllers/auth');
+
+const multer = require('multer');
+
+const upload = multer({dest: 'uploads/'});
 
 router.route('/')
-    .get((req, res)=> {
+    .get((req, res) => {
         return res.render('index');
     });
 
@@ -27,6 +31,10 @@ router.route(['/knowledge/:id', '/wiki/:id']) //support old route for now.
     .all(isAuthenticated)
     .get(Knowledge.show);
 
+router.route('/knowledge/:id/upload') //support old route for now.
+    .all(isAuthenticated)
+    .post(upload.single("newfile"), Knowledge.upload);
+
 //TO DO
 router.route('/todo')
     .all(isAuthenticated)
@@ -45,6 +53,13 @@ router.route(['/signin', '/login'])
 
 router.route(['/signout', '/logout'])
     .get(Auth.signOut);
+
+//DOWNLOAD
+
+router.route('/download/:id')
+    .all(isAuthenticated)
+    .get(Knowledge.download);
+
 
 //MUST BE LAST!
 router.route('*')

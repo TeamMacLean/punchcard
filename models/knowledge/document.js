@@ -19,3 +19,6 @@ Document.pre('save', function (next) {
 });
 
 module.exports = Document;
+
+const Upload = require('./upload');
+Document.hasMany(Upload, 'uploads', 'id', 'documentID');

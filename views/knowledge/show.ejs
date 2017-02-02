@@ -13,6 +13,21 @@
     <p>Last updated <%- moment(doc.updatedAt).calendar() %></p>
     <% } %>
     <p>Created <%- moment(doc.createdAt).calendar() %></p>
+
+    <label>Files</label>
+    <% doc.uploads.map(function(u){ %>
+
+    <a href="/download/<%- u.id %>"><%- u.name %></a>
+
+    <% }); %>
+
+    <hr/>
+
+    <form action="/knowledge/<%- doc.id %>/upload" method="post" enctype="multipart/form-data">
+        <label>Upload</label>
+        <input type="file" name="newfile">
+        <button>Upload</button>
+    </form>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>
