@@ -19,10 +19,11 @@ Document.pre('save', function (next) {
     const self = this;
     //TODO if isn't new!
 
-    if (self.createdAt) {
-        new Document({
-            title: self.title, body: self.body, versionOf: self.id
-        }).save();
+    if (self.id) {
+        console.log('HAS ID!', self.id);
+        // new Document({
+        //     title: self.title, body: self.body, versionOf: self.id
+        // }).save();
     }
 
     // .then(backupDoc => {
