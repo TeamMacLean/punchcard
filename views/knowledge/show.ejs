@@ -4,6 +4,9 @@
 
 <div class="container">
     <h2 class="center"><%- doc.title %></h2>
+    <% if(doc.versionOf){ %>
+    <a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a>
+    <% } %>
     <div id="marked" class="border markdown-body"></div>
     <div class="button-group pull-right">
         <a href="/knowledge/<%- doc.id %>/edit" class="button success">Edit</a>
