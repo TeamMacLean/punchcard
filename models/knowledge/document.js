@@ -9,11 +9,25 @@ const Document = thinky.createModel('Document', {
     body: type.string().required().default('# New Document'),
     username: type.string().required().default('Unknown'),
     createdAt: type.date().default(r.now()),
-    updatedAt: type.date()
-
+    updatedAt: type.date(),
+    versionOf: type.string()
 });
 
 Document.pre('save', function (next) {
+    const self = this;
+    //TODO if isn't new!
+
+    if (!self.createdAt) {
+        new Document({
+            title: self.title, body: self.body, versionOf: self.id
+        }).save();
+    }
+
+    // .then(backupDoc => {
+    // })
+    // .catch(err => {
+    // });
+
     this.updatedAt = new Date();
     next();
 });
@@ -22,3 +36,4 @@ module.exports = Document;
 
 const Upload = require('./upload');
 Document.hasMany(Upload, 'uploads', 'id', 'documentID');
+Document.hasMany(Document, 'versions', 'id', 'versionOf');

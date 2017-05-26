@@ -28,6 +28,12 @@
         <input type="file" name="newfile">
         <button>Upload</button>
     </form>
+
+    <ul>
+        <%- doc.versions.map(function (version){ %>
+        <li><a href="/knowlage/<%- version.id %>"><%- versions.createdAt %></a></li>
+        <% }); %>
+    </ul>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>

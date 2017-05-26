@@ -1,5 +1,5 @@
-var Knowledge = {};
-var moment = require('moment');
+const Knowledge = {};
+const moment = require('moment');
 
 const renderError = require('../lib/renderError');
 const Document = require('../models/knowledge/document');
@@ -20,7 +20,7 @@ Knowledge.index = (req, res) => {
 
 Knowledge.show = (req, res) => {
     const id = req.params.id;
-    Document.get(id).getJoin({uploads: true}).then((doc) => {
+    Document.get(id).getJoin({uploads: true, versions: true}).then((doc) => {
         return res.render('knowledge/show', {doc, moment});
     }).catch(err => renderError(err, res));
 };
@@ -30,7 +30,7 @@ Knowledge.new = (req, res) => {
 };
 
 Knowledge.edit = (req, res) => {
-    var id = req.params.id;
+    const id = req.params.id;
     Document.get(id).then((doc) => {
         return res.render('knowledge/edit', {id, doc});
     });
@@ -63,14 +63,14 @@ Knowledge.download = (req, res) => {
             return res.download(download.path, download.name);
         })
         .catch(err => renderError(err, res));
-}
+};
 
 Knowledge.save = (req, res) => {
 
-    var id = req.body.id;
-    var title = req.body.title;
-    var body = req.body.content;
-    var username = req.user.username;
+    const body = req.body.content;
+    const id = req.body.id;
+    const title = req.body.title;
+    const username = req.user.username;
 
     if (id) {
         Document.get(id).then((doc) => {
