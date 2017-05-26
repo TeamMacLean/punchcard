@@ -13,6 +13,8 @@ const Document = thinky.createModel('Document', {
     versionOf: type.string()
 });
 
+module.exports = Document;
+
 Document.pre('save', function (next) {
     const self = this;
     //TODO if isn't new!
@@ -31,8 +33,6 @@ Document.pre('save', function (next) {
     this.updatedAt = new Date();
     next();
 });
-
-module.exports = Document;
 
 const Upload = require('./upload');
 Document.hasMany(Upload, 'uploads', 'id', 'documentID');
