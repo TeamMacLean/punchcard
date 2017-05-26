@@ -17,7 +17,6 @@ module.exports = Document;
 
 Document.pre('save', function (next) {
     const self = this;
-    //TODO if isn't new!
 
     if (self.id) {
         new Document({
@@ -32,6 +31,3 @@ Document.pre('save', function (next) {
 const Upload = require('./upload');
 Document.hasMany(Upload, 'uploads', 'id', 'documentID');
 Document.hasMany(Document, 'versions', 'id', 'versionOf');
-
-// const Document = require('./document');
-Document.belongsTo(Document, 'document', 'versionOf', 'id');
