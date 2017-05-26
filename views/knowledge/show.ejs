@@ -29,14 +29,12 @@
         <button>Upload</button>
     </form>
 
-    <% if(doc.versions){ %>
     <ul>
 
         <% doc.versions.map(function (version){ %>
-        <li><a href="/knowlage/<%- version.id %>"><%- versions.createdAt %></a></li>
+        <li><a href="/knowlage/<%- version.id %>"><%- version.createdAt %></a></li>
         <% }); %>
     </ul>
-    <% } %>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>

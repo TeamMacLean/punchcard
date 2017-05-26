@@ -22,9 +22,6 @@ Knowledge.index = (req, res) => {
 Knowledge.show = (req, res) => {
     const id = req.params.id;
     Document.get(id).getJoin({uploads: true, versions: true}).then((doc) => {
-        console.log()
-        console.log('VERSIONS',doc);
-        console.log()
         return res.render('knowledge/show', {doc, moment});
     }).catch(err => renderError(err, res));
 };
