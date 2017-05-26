@@ -1,12 +1,13 @@
 const Knowledge = {};
 const moment = require('moment');
+const r = require('../lib/thinky').r;
 
 const renderError = require('../lib/renderError');
 const Document = require('../models/knowledge/document');
 const Upload = require('../models/knowledge/upload');
 
 Knowledge.index = (req, res) => {
-    Document.filter({versionsOf:undefined}).then((docs) => {
+    Document.filter(r.row.hasFields('versionOf')).then((docs) => {
 
         docs = docs.sort(function (a, b) {
             if (a.title < b.title) return -1;
