@@ -6,7 +6,7 @@ const Document = require('../models/knowledge/document');
 const Upload = require('../models/knowledge/upload');
 
 Knowledge.index = (req, res) => {
-    Document.run().then((docs) => {
+    Document.filter({versionsOf: null}).then((docs) => {
 
         docs = docs.sort(function (a, b) {
             if (a.title < b.title) return -1;
