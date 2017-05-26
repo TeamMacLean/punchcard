@@ -5,7 +5,7 @@
 <div class="container">
     <h2 class="center"><%- doc.title %></h2>
     <% if(doc.versionOf){ %>
-    <a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a>
+    <p><a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a></p>
     <% } %>
     <div id="marked" class="border markdown-body"></div>
     <div class="button-group pull-right">
@@ -32,12 +32,15 @@
         <button>Upload</button>
     </form>
 
+    <% if(<% doc.versions){ %>
+    <h3>Old versions of this document:</h3>
     <ul>
-
         <% doc.versions.map(function (version){ %>
         <li><a href="/knowledge/<%- version.id %>"><%- version.createdAt %></a></li>
         <% }); %>
     </ul>
+
+    <% } %>
 </div>
 
 <script src="/components/marked/marked.min.js"></script>
