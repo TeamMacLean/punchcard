@@ -20,16 +20,10 @@ Document.pre('save', function (next) {
     //TODO if isn't new!
 
     if (self.id) {
-        console.log('HAS ID!', self.id);
-        // new Document({
-        //     title: self.title, body: self.body, versionOf: self.id
-        // }).save();
+        new Document({
+            title: self.title, body: self.body, versionOf: self.id
+        }).save();
     }
-
-    // .then(backupDoc => {
-    // })
-    // .catch(err => {
-    // });
 
     this.updatedAt = new Date();
     next();
