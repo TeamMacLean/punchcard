@@ -30,7 +30,7 @@
     </form>
 
     <ul>
-        <%- doc.versions.map(function (version){ %>
+        <% doc.versions.map(function (version){ %>
         <li><a href="/knowlage/<%- version.id %>"><%- versions.createdAt %></a></li>
         <% }); %>
     </ul>
