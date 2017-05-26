@@ -19,9 +19,13 @@ Document.pre('save', function (next) {
     const self = this;
 
     if (self.id) {
-        new Document({
-            title: self.title, body: self.body, versionOf: self.id
-        }).save();
+
+        Document.get(self.id)
+            .then(oldDoc => {
+                new Document({
+                    title: oldDoc.title, body: oldDoc.body, versionOf: oldDoc.id
+                }).save();
+            });
     }
 
     this.updatedAt = new Date();
