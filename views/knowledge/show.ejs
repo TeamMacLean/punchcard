@@ -5,7 +5,7 @@
 <div class="container">
     <h2 class="center"><%- doc.title %></h2>
     <% if(doc.versionOf){ %>
-    <p><a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a></p>
+    <h3><a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a></h3>
     <% } %>
     <div id="marked" class="border markdown-body"></div>
     <div class="button-group pull-right">
@@ -32,7 +32,7 @@
         <button>Upload</button>
     </form>
 
-    <% if(doc.versions){ %>
+    <% if(doc.versions && doc.versions.length){ %>
     <hr>
     <h3>Old versions of this document:</h3>
     <ul>
