@@ -68,13 +68,16 @@ Knowledge.download = (req, res) => {
 
 Knowledge.save = (req, res) => {
 
-    const body = req.body.content;
+    const body = req.body.editor;
     const id = req.body.id;
     const title = req.body.title;
-    const username = req.user.username;
+    const username = req.user.username || res.locals.signedInUser.username;
+
+    console.log(body);
 
     if (id) {
         Document.get(id).then((doc) => {
+
             doc.title = title;
             doc.body = body;
             doc.username = username;
@@ -84,7 +87,7 @@ Knowledge.save = (req, res) => {
                 .catch(err => renderError(err, res));
         }).catch(err => renderError(err, res));
     } else {
-        new Document({title, body}).save()
+        new Document({title, body, username}).save()
             .then((doc) => {
                 return res.redirect(`/knowledge/${doc.id}`)
             })

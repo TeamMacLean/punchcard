@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Knowledge = require('./controllers/knowledge');
-const Tickets = require('./controllers/tickets');
-const Todos = require('./controllers/todos');
 const Auth = require('./controllers/auth');
 
 const multer = require('multer');
@@ -11,7 +9,8 @@ const upload = multer({dest: 'uploads/'});
 
 router.route('/')
     .get((req, res) => {
-        return res.render('index');
+        return res.redirect('/knowledge');
+        // return res.render('index');
     });
 
 //knowledge
@@ -35,13 +34,6 @@ router.route('/knowledge/:id/upload') //support old route for now.
     .all(isAuthenticated)
     .post(upload.single("newfile"), Knowledge.upload);
 
-//TO DO
-router.route('/todo')
-    .all(isAuthenticated)
-    .get(Todos.index);
-router.route('/ticket')
-    .all(isAuthenticated)
-    .get(Tickets.index);
 
 //TODO Tickets
 

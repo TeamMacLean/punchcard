@@ -1,6 +1,4 @@
 const express = require('express');
-const path = require('path');
-const morgan = require('morgan');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const app = express();
@@ -9,8 +7,6 @@ const session = require('express-session');
 const rethinkSession = require('session-rethinkdb')(session);
 const LdapStrategy = require('passport-ldapauth');
 const config = require('./config.json');
-
-app.use(morgan('combined'));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');

@@ -2,8 +2,9 @@
 
 <div class="container">
     <form action="/knowledge/save" method="post">
+        <input type="hidden" name="username" value="<%- locals.signedInUser.username %>" required readonly>
         <% if(typeof doc != 'undefined' ){ %>
-        <input type="hidden" name="id" value="<%- doc.id %>" required>
+        <input type="hidden" name="id" value="<%- doc.id %>" required readonly>
         <% } else {
             doc = {};
         } %>
@@ -11,11 +12,19 @@
             <label for="title">Title</label>
             <input name="title" type="text" placeholder="Title" value="<%- doc.title %>" required>
         </div>
-        <div class="form-group">
-            <label for="content">Content</label>
-            <div name="content" class="epiceditor" id="epiceditor"></div>
+        <label for="editor">Content</label>
+        <div class="row">
+            <div class="col6">
+                <div class="form-group">
+                    <textarea class="editor" id="editor" name="editor" placeholder="# New Document"><%- doc.body %></textarea>
+                </div>
+            </div>
+            <div class="col6">
+                <div id="preview"></div>
+            </div>
         </div>
-        <input type="hidden" name="content" id="content" value="<%- doc.body %>">
+
+
         <div class="form-group pull-right">
             <a href="/knowledge/<%- doc.id %>" class="button primary">Back</a>
             <input type="submit" class="success" value="Save">
@@ -23,41 +32,6 @@
     </form>
 </div>
 
-<script src="/components/EpicEditor/epiceditor/js/epiceditor.min.js"></script>
-<script>
-    var opts = {
-        container: 'epiceditor',
-        textarea: 'content',
-        basePath: '/components/EpicEditor/epiceditor',
-        clientSideStorage: false,
-        localStorageName: 'epiceditor',
-        useNativeFullscreen: true,
-        parser: marked,
-        theme: {
-            base: '/themes/base/epiceditor.css',
-            preview: '/themes/preview/preview-dark.css',
-            editor: '/themes/editor/epic-dark.css'
-        },
-        button: {
-            preview: true,
-            fullscreen: true,
-            bar: "auto"
-        },
-        focusOnLoad: false,
-        shortcut: {
-            modifier: 18,
-            fullscreen: 70,
-            preview: 80
-        },
-        string: {
-            togglePreview: 'Toggle Preview Mode',
-            toggleEdit: 'Toggle Edit Mode',
-            toggleFullscreen: 'Enter Fullscreen'
-        },
-        autogrow: true
-    }
-    var editor = new EpicEditor(opts);
-    editor.load();
-</script>
+<script src="/js/markdown_stuff.js"></script>
 
 <% include ../foot.ejs %>

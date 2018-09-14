@@ -1,7 +1,5 @@
 <% include ../head.ejs %>
 
-<link href="/components/github-markdown-css/github-markdown.css" rel="stylesheet">
-
 <div class="container">
     <h2 class="center"><%- doc.title %></h2>
     <% if(doc.versionOf){ %>
@@ -44,7 +42,7 @@
     <% } %>
 </div>
 
-<script src="/components/marked/marked.min.js"></script>
+<script src="/js/markdown_stuff.js"></script>
 <script>
     marked.setOptions({
         renderer: new marked.Renderer(),
@@ -59,6 +57,7 @@
 
     var content = decodeURI("<%- encodeURI(doc.body) %>");
     document.getElementById('marked').innerHTML = marked(content);
+    console.log(document.getElementById('marked').innerHTML);
 </script>
 
 <% include ../foot.ejs %>
