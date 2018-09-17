@@ -10,6 +10,7 @@ const config = require('./config.json');
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
+app.engine('ejs', require('ejs').renderFile); //optional I think
 app.use(require('less-middleware')('./public'));
 app.use(express.static('./public'));
 app.use(bodyParser.json());
