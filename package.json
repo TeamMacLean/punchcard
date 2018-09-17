@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/wookoouk/punchcard#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",

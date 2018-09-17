@@ -10,11 +10,11 @@ Auth.isUser = function (username) {
 };
 
 Auth.index = (req, res) => {
-    res.render('index');
+    res.render('./index');
 };
 
 Auth.signIn = (req, res) => {
-    res.render('signin');
+    res.render('./signin');
 };
 
 Auth.signOut = (req, res) => {

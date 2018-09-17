@@ -15,25 +15,25 @@ Knowledge.index = (req, res) => {
             return 0;
         });
 
-        return res.render('knowledge/index', {docs, moment});
+        return res.render('./knowledge/index', {docs, moment});
     }).catch(err => renderError(err, res));
 };
 
 Knowledge.show = (req, res) => {
     const id = req.params.id;
     Document.get(id).getJoin({uploads: true, versions: true}).then((doc) => {
-        return res.render('knowledge/show', {doc, moment});
+        return res.render('./knowledge/show', {doc, moment});
     }).catch(err => renderError(err, res));
 };
 
 Knowledge.new = (req, res) => {
-    return res.render('knowledge/edit');
+    return res.render('./knowledge/edit');
 };
 
 Knowledge.edit = (req, res) => {
     const id = req.params.id;
     Document.get(id).then((doc) => {
-        return res.render('knowledge/edit', {id, doc});
+        return res.render('./knowledge/edit', {id, doc});
     });
 };
 
@@ -48,7 +48,7 @@ Knowledge.upload = (req, res) => {
     })
         .save()
         .then(saved => {
-            return res.redirect(`/knowledge/${id}`);
+            return res.redirect(`.//knowledge/${id}`);
         })
         .catch(err => renderError(err, res));
 
@@ -82,14 +82,14 @@ Knowledge.save = (req, res) => {
             doc.body = body;
             doc.username = username;
             doc.save().then((doc) => {
-                return res.redirect(`/knowledge/${doc.id}`)
+                return res.redirect(`./knowledge/${doc.id}`)
             })
                 .catch(err => renderError(err, res));
         }).catch(err => renderError(err, res));
     } else {
         new Document({title, body, username}).save()
             .then((doc) => {
-                return res.redirect(`/knowledge/${doc.id}`)
+                return res.redirect(`.//knowledge/${doc.id}`)
             })
             .catch(err => renderError(err, res));
     }
