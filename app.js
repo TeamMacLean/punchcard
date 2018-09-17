@@ -7,8 +7,9 @@ const session = require('express-session');
 const rethinkSession = require('session-rethinkdb')(session);
 const LdapStrategy = require('passport-ldapauth');
 const config = require('./config.json');
+const path = require('path');
 
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').renderFile); //optional I think
 app.use(require('less-middleware')('./public'));
