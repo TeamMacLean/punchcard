@@ -48,7 +48,7 @@ Knowledge.upload = (req, res) => {
     })
         .save()
         .then(saved => {
-            return res.redirect(`.//knowledge/${id}`);
+            return res.redirect(`/knowledge/${id}`);
         })
         .catch(err => renderError(err, res));
 
