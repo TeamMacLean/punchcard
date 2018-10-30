@@ -82,14 +82,14 @@ Knowledge.save = (req, res) => {
             doc.body = body;
             doc.username = username;
             doc.save().then((doc) => {
-                return res.redirect(`./knowledge/${doc.id}`)
+                return res.redirect(`/knowledge/${doc.id}`)
             })
                 .catch(err => renderError(err, res));
         }).catch(err => renderError(err, res));
     } else {
         new Document({title, body, username}).save()
             .then((doc) => {
-                return res.redirect(`.//knowledge/${doc.id}`)
+                return res.redirect(`/knowledge/${doc.id}`)
             })
             .catch(err => renderError(err, res));
     }
