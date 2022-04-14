@@ -5,3 +5,5 @@ node_modules
 public/components
 uploads/
 .cache/
+rethinkdb_data
+
