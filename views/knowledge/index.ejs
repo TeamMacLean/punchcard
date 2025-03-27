@@ -4,6 +4,11 @@ docs.filter(doc => doc.archived); %> <% include ../head.ejs %>
 <div class="container">
   <h2 class="center">Knowledge</h2>
 
+  <div>
+    You can now archive articles. See archived articles at the bottom of this
+    page.
+  </div>
+
   <a href="/knowledge/new" class="button success pull-right">New</a>
 
   <table class="table">
@@ -62,6 +67,8 @@ docs.filter(doc => doc.archived); %> <% include ../head.ejs %>
       </tbody>
     </table>
   </div>
+  <% } else { %>
+  <div>You have no archived articles.</div>
   <% } %>
 </div>
 
