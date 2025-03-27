@@ -1,66 +1,87 @@
 <% include ../head.ejs %>
 
 <div class="container">
-    <h2 class="center"><%- doc.title %></h2>
-    <% if(doc.versionOf){ %>
-    <h3><a href="/knowledge/<%- doc.versionOf %>">View newest version of this document</a></h3>
-    <% } %>
-    <div id="marked" class="border markdown-body"></div>
-    <div class="button-group pull-right">
-        <a href="/knowledge/<%- doc.id %>/edit" class="button success">Edit</a>
-        <!--<a href="/knowledge/<%- doc.id %>/delete" class="button danger areyousure">Delete</a>-->
-    </div>
-    <% if(doc.updatedAt){ %>
-    <p>Last updated <%- moment(doc.updatedAt).calendar() %></p>
-    <% } %>
-    <p>Created <%- moment(doc.createdAt).calendar() %></p>
+  <h2 class="center"><%- doc.title %></h2>
+  <% if(doc.versionOf){ %>
+  <h3>
+    <a href="/knowledge/<%- doc.versionOf %>"
+      >View newest version of this document</a
+    >
+  </h3>
+  <% } %>
+  <div id="marked" class="border markdown-body"></div>
 
-    <label>Files</label>
-    <% doc.uploads.map(function(u){ %>
-
-    <a href="/download/<%- u.id %>"><%- u.name %></a>
-
-    <% }); %>
-
-    <hr/>
-
-    <form action="/knowledge/<%- doc.id %>/upload" method="post" enctype="multipart/form-data">
-        <label>Upload</label>
-        <input type="file" name="newfile">
-        <button>Upload</button>
+  <div class="button-group pull-right">
+    <a
+      href="/knowledge/<%- doc.id %>/edit"
+      class="button success"
+      style="margin-right: 10px"
+      >Edit</a
+    >
+    <form
+      action="/knowledge/<%- doc.id %>/toggleArchive"
+      method="post"
+      style="display: inline"
+    >
+      <button class="button warning">
+        <%- doc.archived ? 'Unarchive' : 'Archive' %>
+      </button>
     </form>
+    <!--<a href="/knowledge/<%- doc.id %>/delete" class="button danger areyousure">Delete</a>-->
+  </div>
 
-    <% if(doc.versions && doc.versions.length){ %>
-    <hr>
-    <h3>Old versions of this document:</h3>
-    <ul>
-        <% doc.versions.map(function (version){ %>
-        <li><a href="/knowledge/<%- version.id %>"><%- version.createdAt %></a></li>
-        <% }); %>
-    </ul>
+  <% if(doc.updatedAt){ %>
+  <p>Last updated <%- moment(doc.updatedAt).calendar() %></p>
+  <% } %>
+  <p>Created <%- moment(doc.createdAt).calendar() %></p>
 
-    <% } %>
+  <label>Files</label>
+  <% doc.uploads.map(function(u){ %>
+
+  <a href="/download/<%- u.id %>"><%- u.name %></a>
+
+  <% }); %>
+
+  <hr />
+
+  <form
+    action="/knowledge/<%- doc.id %>/upload"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <label>Upload</label>
+    <input type="file" name="newfile" />
+    <button>Upload</button>
+  </form>
+
+  <% if(doc.versions && doc.versions.length){ %>
+  <hr />
+  <h3>Old versions of this document:</h3>
+  <ul>
+    <% doc.versions.map(function (version){ %>
+    <li><a href="/knowledge/<%- version.id %>"><%- version.createdAt %></a></li>
+    <% }); %>
+  </ul>
+
+  <% } %>
 </div>
 
 <script src="/js/markdown_stuff.js"></script>
 <script>
-    marked.setOptions({
-        renderer: new marked.Renderer(),
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
-        sanitize: false,
-        smartLists: true,
-        smartypants: false
-    });
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+  });
 
-    var content = decodeURI("<%- encodeURI(doc.body) %>");
-    document.getElementById('marked').innerHTML = marked(content);
-    console.log(document.getElementById('marked').innerHTML);
+  var content = decodeURI("<%- encodeURI(doc.body) %>");
+  document.getElementById("marked").innerHTML = marked(content);
+  console.log(document.getElementById("marked").innerHTML);
 </script>
 
 <% include ../foot.ejs %>
-
-
-

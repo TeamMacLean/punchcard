@@ -1,34 +1,78 @@
-<% include ../head.ejs %>
+<% const activeDocs = docs.filter(doc => !doc.archived); const archivedDocs =
+docs.filter(doc => doc.archived); %> <% include ../head.ejs %>
 
 <div class="container">
-    <h2 class="center">Knowledge</h2>
+  <h2 class="center">Knowledge</h2>
 
-    <a href="/knowledge/new" class="button success pull-right">New</a>
+  <a href="/knowledge/new" class="button success pull-right">New</a>
 
-    <table class="table">
-        <thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="align-left">Name</th>
+        <th class="align-right">Last Edited</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% activeDocs.forEach(function(doc) { %>
+      <a href="/knowledge/<%- doc.id %>">
         <tr>
-            <th class="align-left">Name</th>
-            <th class="align-right">Last Edited</th>
+          <td class="align-left">
+            <a href="/knowledge/<%- doc.id %>"><%- doc.title %></a>
+          </td>
+          <td class="align-right">
+            <p>
+              <%- moment(doc.updatedAt ? doc.updatedAt :
+              doc.createdAt).calendar() %>
+            </p>
+          </td>
         </tr>
-        </thead>
-        <tbody>
-        <% docs.map(function(doc){ %>
+      </a>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <% if (archivedDocs.length) { %>
+  <button id="toggleArchived" class="button">Toggle archived</button>
+  <div id="archivedSection" style="display: none; margin-top: 20px">
+    <h3>Archived Articles</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="align-left">Name</th>
+          <th class="align-right">Last Edited</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% archivedDocs.forEach(function(doc) { %>
         <a href="/knowledge/<%- doc.id %>">
-            <tr>
-                <td class="align-left"><a href="/knowledge/<%- doc.id %>"><%- doc.title %></a></td>
-                <td class="align-right">
-                    <p><%- moment(doc.updatedAt ? doc.updatedAt : doc.createdAt).calendar() %></p>
-                </td>
-            </tr>
+          <tr>
+            <td class="align-left">
+              <a href="/knowledge/<%- doc.id %>"><%- doc.title %></a>
+            </td>
+            <td class="align-right">
+              <p>
+                <%- moment(doc.updatedAt ? doc.updatedAt :
+                doc.createdAt).calendar() %>
+              </p>
+            </td>
+          </tr>
         </a>
         <% }); %>
-        </tbody>
+      </tbody>
     </table>
-
+  </div>
+  <% } %>
 </div>
 
+<script>
+  document
+    .getElementById("toggleArchived")
+    .addEventListener("click", function () {
+      var archived = document.getElementById("archivedSection");
+      archived.style.display =
+        archived.style.display === "none" ? "block" : "none";
+    });
+</script>
+
 <% include ../foot.ejs %>
-
-
-
